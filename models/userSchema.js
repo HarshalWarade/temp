@@ -45,6 +45,13 @@ const userSchema = new mongoose.Schema({
                 required: true
             }
         }
+    ],
+    followers: [
+        {
+            follwerss: {
+                type: String
+            }
+        }
     ]
 },
     {

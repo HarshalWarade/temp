@@ -17,7 +17,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 const User = require('./models/userSchema');
-const { Console } = require('console');
+const { findOneAndDelete } = require('./models/userSchema');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -198,15 +198,6 @@ app.get('/logOutUser', (req, res)=>{
     return res.redirect('login');
 });
 app.get('/dashboard', authenticate, function(req, res){
-    // if(req.rootUser.occupation === 'Programmer'){
-    //     console.log('Service for him...');
-    //     return res.status(200).render('userDashboardprog', {
-    //         originalname: req.rootUser.name,
-    //         originalusername: req.rootUser.username
-    //     });
-    // }else{
-    //     console.log('No service for non-programmers');
-    // }
     return res.render('userDashboardprog', {
         originalname: req.rootUser.name,
         originalusername: req.rootUser.username
@@ -242,6 +233,21 @@ app.get('/activeUsers', async (req, res) => {
 
 
 }) 
+
+app.get('/deleteThisUser', authenticate, async (req, res)=>{
+    try{
+        const findUsertoDelete = await User.findOneAndDelete(req.rootUser._id);
+        if(findUsertoDelete){
+            return res.status(200).json({message: 'User deleted!'});
+        }
+        else{
+            return res.status(422).json({error: 'Unable to delete user.'});
+        }
+    }catch(err){
+        console.log(err);
+    }
+})
+
 
 app.listen(port, (err)=>{
     if(err==true){console.log(`Error occured: ${err}`)}else{

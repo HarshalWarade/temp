@@ -93,6 +93,12 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        .gap-properly{
+            gap: 1.3rem;
+        }
+        .mainuserwindow .card .commonInfo p.red{
+            color: red;
+        }
     </style>
 </head>
 
@@ -132,8 +138,9 @@
                 <p class="holder"><b>Occupation: </b></p>
                 <p><%=userOccupation%></p>
             </div>
-            <div class="commonInfo">
+            <div class="commonInfo gap-properly">
                 <a href="/deleteThisUser" class="deleteAccount">Delete Account</a>
+                <p class="red">Delete action cannot be recovered <br> be very careful before you click that red button</p>
             </div>
         </div>
     </div>
