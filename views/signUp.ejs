@@ -26,6 +26,10 @@
         .signUp:hover {
             background: #515181;
         }
+        #valuenotchange{
+            user-select: none;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -77,6 +81,9 @@
                         <option value="Builder">Builder</option>
                     </select>
                 </div>
+            </div>
+            <div>
+                <input type="text" name="isLogin" value="false" id="valuenotchange">
             </div>
             <button type="submit" id="account">Create Account</button>
         </form>

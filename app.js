@@ -41,8 +41,8 @@ var addBlog = [
 ]
 
 app.post('/registerUser', async function(req, res){
-    const {name, username, email, phonenumber,password, cpassword, dob, occupation, gender} = req.body;
-    if(!name || !username || !email || !phonenumber || !password || !cpassword || !dob || !occupation || !gender){
+    const {name, username, email, phonenumber,password, cpassword, dob, occupation, gender, isLogin} = req.body;
+    if(!name || !username || !email || !phonenumber || !password || !cpassword || !dob || !occupation || !gender || !isLogin){
         return res.status(422).render('badrequest',{
             thisTextError: 'Fields are missing!'
         });
@@ -68,8 +68,9 @@ app.post('/registerUser', async function(req, res){
                 thisTextError: 'Password and confirm password, are not matching!'
             })
         }else{
-            const user = new User({name, username, email,phonenumber,password,cpassword,dob,occupation,gender});
+            const user = new User({name, username, email,phonenumber,password,cpassword,dob,occupation,gender,isLogin});
             await user.save();
+            req.body.isLogin = false;
             res.status(201).render('login', {mainName: `${req.body.username} account created`});
         }
     }catch(err){
@@ -79,7 +80,10 @@ app.post('/registerUser', async function(req, res){
 let thisPerson;
 app.post('/loginUser', async (req, res)=>{
     try{    
-        const {username, password} = req.body;
+        const {username, password, isLogin} = req.body;
+        const filter = { username: req.body.username };
+        const textApplied = { isLogin: 'true' };
+        await User.findOneAndUpdate(filter, textApplied);
         if(!username || !password){
             return res.status(400).render('badrequest', {
                 thisTextError: 'Please fill the fields!'
@@ -118,14 +122,21 @@ app.post('/loginUser', async (req, res)=>{
     }
 });
 app.get('/teleport', authenticate, async function(req, res){
-    let x = new Date().getDate();
-    let y = new Date().getMonth() + 1;
-    let z = new Date().getFullYear();
-    res.status(200).render('basic', {
+    try {
+        const usersl = await User.find({isLogin: 'true'});
+        const count = await User.count({isLogin: 'true'})
+        console.log(count);
+        let x = new Date().getDate();
+        let y = new Date().getMonth() + 1;
+        let z = new Date().getFullYear();
+        res.status(200).render('basic', {
         timess: `${x}/${y}/${z}`,
         newBlog: addBlog,
 
     });
+    } catch (error) {
+        console.log(error);
+    }
 })
 app.get('/back', (req, res)=>{
     res.redirect('signUp');
@@ -167,25 +178,6 @@ app.get('/blogsMain', authenticate, (req, res)=>{
     return res.status(422).redirect('teleport');
 });
 app.post('/addBlogtoPost', authenticate, async function(req, res){
-    // // console.log("/addBlogtoPost section is working!");
-    // try{    
-    //     const {username, password} = req.body;
-    //     // always handle this types of functions with async and await...
-    //     const userLogin = await User.findOne({username:username});
-    //     if(userLogin){
-    //         const isMatch = await bcrypt.compare(password, userLogin.password);
-    //         if(!isMatch){
-    //             res.status(400).json({error: "Invalid details"});
-    //         }else{
-    //             // let thisPerson = req.body.username;
-    //             // res.status(201).render('successlogin', {mainName: `${req.body.username} logged in successfully!`});
-    //         }
-    //     }else{
-    //         res.status(400).json({error: "Invalid details"});
-    //     }
-    // } catch(err){
-    //     console.log(err);
-    // }
     addBlog.push(req.body);
     return res.redirect('teleport');
 });
@@ -194,8 +186,16 @@ app.get('/moments', authenticate, function(req, res){
         thisTextError: 'Ummm? Bad requests / direct requests are not allowed.'
     });
 })
-app.get('/logOutUser', (req, res)=>{
-    return res.redirect('login');
+app.get('/logOutUser',authenticate, async (req, res)=>{
+    try{
+        const filterr = { username: req.rootUser.username };
+        const textAppliedd = { isLogin: 'false' };
+        await User.findOneAndUpdate(filterr, textAppliedd);
+        const count = await User.count({isLogin: 'true'})
+        console.log(count);
+        return res.redirect('login');
+    }catch(err){console.log(err)}
+
 });
 app.get('/dashboard', authenticate, function(req, res){
     return res.render('userDashboardprog', {
@@ -223,8 +223,9 @@ app.get('/goback', authenticate, (req, res)=>{
 app.get('/activeUsers', async (req, res) => {
 
     try {
-        const count = await User.count({gender: 'male'})
-        console.log(count)
+        const usersl = await User.find({isLogin: 'true'});
+        const count = await User.count({isLogin: 'true'})
+        console.log(count);
         res.status(200).send()
     } catch (error) {
         res.status(500).send()
