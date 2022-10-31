@@ -238,10 +238,16 @@ app.get('/deleteThisUser', authenticate, async (req, res)=>{
     try{
         const findUsertoDelete = await User.findOneAndDelete(req.rootUser._id);
         if(findUsertoDelete){
-            return res.status(200).json({message: 'User deleted!'});
+            return res.status(200).render('userDeleted', {
+                greet: 'SUCCESS',
+                thisTextError: 'User deleted successfully!'
+            });
         }
         else{
-            return res.status(422).json({error: 'Unable to delete user.'});
+            return res.status(422).render('userDeleted', {
+                greet: 'FAILED',
+                thisTextError: 'Failed to delete user'
+            })
         }
     }catch(err){
         console.log(err);
