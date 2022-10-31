@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invalid Token</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+        .huge{
+            font-weight: 800;
+            font-size: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: rgb(240, 240, 240);
+        }
+        .normal{
+            font-size: 16px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: #000;
+        }
+        .loginMiniRoute{
+            font-size: 16px;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: #000;
+            text-decoration: none;
+            background: #64649d;
+            padding: 10px 30px;
+            border-radius: 4px;
+            color: #fff;
+            transition: 0.4s ease;
+        }
+        .loginMiniRoute:hover{
+            background: #515181;
+        }
+    </style>
+</head>
+<body>
+    <p class="huge">Unauthorized token</p>
+    <p class="normal">Access cannot be granted, please log in to continue. Session will be terminated in 15 minutes or inactivity.</p>
+    <a href="/login" class="loginMiniRoute">Login</a>
+</body>
+</html>

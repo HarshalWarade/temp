@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userDashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .mainSection {
+            /* border: 2px solid red; */
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+        }
+
+        .mainSection .sidebar {
+            background: #1F2125;
+            height: 100vh;
+            /* padding: 0px; */
+            /* border: 2px solid springgreen; */
+        }
+
+        .mainSection .sidebar .credentials {
+            /* border: 2px solid blue; */
+            /* height: 20px; */
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0px;
+            align-items: center;
+            height: 10vh;
+        }
+
+        body {
+            background: #16171B;
+        }
+
+        .mainSection .sidebar .credentials .simpleLogo {
+            filter: drop-shadow(0 0 40px #00b274);
+            height: 40px;
+            border-radius: 50%;
+            width: 40px;
+            /* font-weight: 700; */
+            /* border: 2px solid red; */
+            display: flex;
+            justify-content: center;
+            /* gap: 2rem; */
+            color: #fff;
+            font-size: 12px;
+            align-items: center;
+            /* border: 2px solid green; */
+            background: #00B274;
+        }
+
+        .mainSection .sidebar .credentials .userName p:nth-child(1) {
+            color: #fff;
+        }
+
+        .mainSection .sidebar .credentials .userName p:nth-child(2) {
+            color: #A7A9AD;
+        }
+
+        .mainSection .sidebar .credentials a {
+            /* padding: 20px; */
+            width: 3.5vw;
+            height: 40px;
+            text-decoration: none;
+            font-size: 16px;
+            background: #00B274;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            filter: drop-shadow(0 0 40px #00b274);
+            border-radius: 6px;
+            justify-content: center;
+            outline: none;
+            border: none;
+            align-items: center;
+        }
+
+        .mainSection .sidebar .options {
+            /* border: 2px solid #00b274; */
+            height: 25vh;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+
+        .mainSection .sidebar .options .impDiv {
+            padding: 0 20px;
+
+            /* background-color: white; */
+            /* height: 100%; */
+        }
+
+        .mainSection .sidebar .options .impDiv a {
+            display: flex;
+            /* background-color: red; */
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            color: white;
+            /* justify-content: center; */
+            align-items: center;
+            transition: 0.4s ease;
+            border-radius: 8px;
+        }
+
+        .mainSection .sidebar .options .impDiv a p span.number {
+            position: relative;
+            background: #FF412D;
+            color: white;
+            left: 20px;
+            /* width: 20px; */
+            font-size: 13px;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        .mainSection .sidebar .options .impDiv a.active {
+            background: #00b274;
+            filter: drop-shadow(0 0 10px #00b274);
+        }
+
+        .mainSection .sidebar .options .impDiv a:hover {
+            background: #00b274;
+            border-radius: 8px;
+            filter: drop-shadow(0 0 10px #00b274);
+        }
+
+        .mainSection .sidebar .options .impDiv .icon {
+            color: rgba(255, 255, 255, 0.73);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .mainSection .sidebar .options .impDiv icon.active {
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .details-text {
+            color: #888;
+            /* text-align: center; */
+            /* padding-top: 20px; */
+            padding: 20px 0 0 34px;
+        }
+
+        .info-text {
+            color: #ececec;
+            /* text-align: center; */
+            /* padding-top: 20px; */
+            font-size: 15px;
+            padding: 20px 34px 0 34px;
+            text-align: justify;
+        }
+
+        .logout {
+            /* padding: 20px 0 10px 34px; */
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .logout a {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logout a span:nth-child(1) {
+            /* padding: 20px 0 0 34px; */
+            display: flex;
+        }
+
+        .mainHome {
+            /* border: 2px solid #00B274; */
+            padding: 50px 40px;
+            height: 100vh;
+        }
+
+        .mainHome .upperSection {
+            /* border: 2px solid #00B274; */
+            height: 20vh;
+            background: #1F2125;
+            border-radius: 12px;
+            display: grid;
+            padding: 25px 0;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .mainHome .upperSection .extraInfo {
+            color: white;
+            display: flex;
+            justify-content: space-evenly;
+            /* align-items: center; */
+            padding: 0 30px;
+            flex-direction: column;
+        }
+
+        .mainHome .upperSection .extraInfo p.headingHere {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .mainHome .upperSection .extraInfo p:nth-child(2) {
+            font-size: 25px;
+            letter-spacing: 3px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .mainHome .upperSection .extraInfo .iconHolder {
+            display: flex;
+            /* justify-content: center; */
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .mainHome .upperSection .extraInfo .iconHolder .icon-value {
+            font-size: 14px;
+            color: #00B274;
+            font-weight: normal;
+            letter-spacing: 3px;
+        }
+
+        .mainHome .upperSection .extraInfo .iconHolder .value-down {
+            font-size: 14px;
+            color: #f00;
+            font-weight: normal;
+            letter-spacing: 3px;
+        }
+
+        .iconHolders {
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            width: 30px;
+            background: rgba(44, 142, 70, 0.43);
+            color: lime;
+        }
+
+        .down {
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            width: 30px;
+            background: rgba(142, 44, 44, 0.43);
+            color: red;
+        }
+
+        .mainHome .upperSection div:nth-child(1) {
+            border-right: 2px solid #36383C;
+        }
+
+        .mainHome .upperSection div:nth-child(2) {
+            border-right: 2px solid #36383C;
+            padding-left: 40px;
+        }
+
+        .mainHome .upperSection div:nth-child(3) {
+            border-right: 2px solid #36383C;
+            padding-left: 40px;
+        }
+
+        .mainHome .upperSection div:nth-child(4) {
+            padding-left: 40px;
+        }
+
+        .extra {
+            margin-top: 40px;
+            height: 63.7vh;
+            display: grid;
+            grid-template-columns: 3.6fr 2fr;
+            overflow-y: auto;
+            gap: 2rem;
+        }
+
+        .extra::-webkit-scrollbar {
+            width: 0;
+            display: none;
+        }
+
+        .extra .extra-left,
+        .extra-right {
+            padding: 20px 0;
+        }
+
+        .extra .extra-left .most-viewed-post {
+            background: #1F2125;
+            border: 1px solid #1F2125;
+            border-radius: 12px;
+            transition: 0.4s ease;
+            height: min-content;
+        }
+
+        .extra .extra-left .most-viewed-post:hover {
+            border: 1px solid #00B274;
+        }
+
+        .extra .extra-left .most-viewed-post .most-viewed {
+            color: #999;
+            padding: 30px 0 0px 40px;
+            /* border: 2px solid red; */
+            font-size: 20px;
+        }
+
+        .extra .extra-left .most-viewed-post .post-body {
+            /* border: 1px solid #666; */
+            color: #666;
+            padding: 30px 40px;
+            text-align: justify;
+            /* height: 28vh; */
+        }
+
+        .extra .extra-left .audience-reached {
+            /* border: 2px solid orange; */
+            height: 35vh;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            /* padding: 0 40px; */
+        }
+
+        .card {
+            color: white;
+            background: #1F2125;
+            border-radius: 12px;
+            width: 49%;
+            display: flex;
+            /* justify-content: space-around; */
+            align-items: center;
+            padding: 30px;
+            transition: 0.4s ease;
+            gap: 2rem;
+            /*  */
+            height: 50%;
+            align-items: center;
+            /* height; */
+            border: 1px solid #1F2125;
+        }
+
+        .card:hover {
+            border: 1px solid #00B274;
+        }
+
+        .card .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.34);
+        }
+
+        .card .card-info {
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+            flex-direction: column;
+        }
+
+        .card .card-info .cardHeading {
+            color: #ccc;
+        }
+
+        .card .card-info .count {
+            color: #999;
+            letter-spacing: 3px;
+        }
+
+        .moreInfo {
+            /* border: 2px solid #00B274; */
+            background: #1F2125;
+            border-radius: 12px;
+            height: 90%;
+        }
+        .code a{
+            background: #292b31;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainSection">
+        <div class="sidebar">
+            <div class="credentials">
+                <div class="simpleLogo">
+                    <p>HW</p>
+                </div>
+                <div class="userName">
+                    <p><%=originalname%></p>
+                    <p>@<%=originalusername%></p>
+                </div>
+                <div class="button">
+                    <a href="/userProfileRequest"><i class="fa-solid fa-pen"></i></a>
+                </div>
+            </div>
+            <div class="options">
+                <div class="impDiv">
+                    <a href="#">
+                        <div class="icon">
+                            <ion-icon name="albums-outline"></ion-icon>
+                        </div>
+                        <p>Inbox</p>
+                    </a>
+                </div>
+                <div class="impDiv">
+                    <a href="#">
+                        <div class="icon">
+                            <ion-icon name="trending-up-outline"></ion-icon>
+                        </div>
+                        <p>Updates <span class="number" id="updatesNumber">2</span></p>
+                    </a>
+                </div>
+                <div class="impDiv">
+                    <a href="#" class="active">
+                        <div class="icon">
+                            <ion-icon name="grid-outline" class="active"></ion-icon>
+                        </div>
+                        <p>Overview</p>
+                    </a>
+                </div>
+            </div>
+
+
+
+
+            <p class="details-text">Details</p>
+            <div class="options">
+                <div class="impDiv">
+                    <a href="#">
+                        <div class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </div>
+                        <p>Followers</p>
+                    </a>
+                </div>
+                <div class="impDiv">
+                    <a href="#">
+                        <div class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </div>
+                        <p>Following</p>
+                    </a>
+                </div>
+                <div class="impDiv code">
+                    <a href="#">
+                        <div class="icon">
+                            <i class="fa-regular fa-keyboard"></i>
+                        </div>
+                        <p>Code Zone</p>
+                    </a>
+                </div>
+            </div>
+
+
+            <p class="details-text">About Developers</p>
+            <p class="info-text">This application is made with all the love in the world by Harshal Warade, (@hdwarade)
+                as his main project. </p>
+            <div class="logout">
+                <a href="/logOutUser"><span>
+                        <ion-icon name="power-outline"></ion-icon>
+                    </span><span>LogOut</span></a>
+            </div>
+
+        </div>
+        <div class="mainHome">
+            <div class="upperSection">
+                <div class="extraInfo">
+                    <p class="headingHere">Followers</p>
+                    <p class="followers">32.4 M</p>
+                    <span class="iconHolder">
+                        <section class="iconHolders">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </section>
+                        <p class="icon-value">32.2%</p>
+                    </span>
+                </div>
+                <div class="extraInfo">
+                    <p class="headingHere">Following</p>
+                    <p class="following">14</p>
+                    <span class="iconHolder">
+                        <section class="iconHolders down">
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </section>
+                        <p class="icon-value value-down">2.1%</p>
+                    </span>
+                </div>
+                <div class="extraInfo">
+                    <p class="headingHere">Posts</p>
+                    <p class="posts">78</p>
+                    <span class="iconHolder">
+                        <section class="iconHolders down">
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </section>
+                        <p class="icon-value value-down">14.8%</p>
+                </div>
+                <div class="extraInfo">
+                    <p class="headingHere">Earnings this month</p>
+                    <p class="earnings">$21378.3</p>
+                    <span class="iconHolder">
+                        <section class="iconHolders">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </section>
+                        <p class="icon-value">9.9%</p>
+                </div>
+            </div>
+
+            <div class="extra">
+                <div class="extra-left common-styles">
+                    <div class="most-viewed-post">
+                        <p class="most-viewed">Your most viewed post</p>
+                        <div class="post-body">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus reiciendis odit,
+                            asperiores sed temporibus sapiente iusto quidem ratione numquam repudiandae distinctio
+                            possimus totam saepe, voluptatum, porro quod quibusdam consequatur minima.
+                        </div>
+                    </div>
+                    <div class="audience-reached">
+                        <div class="card">
+                            <div class="icon">
+                                <ion-icon name="speedometer-outline"></ion-icon>
+                            </div>
+                            <div class="card-info">
+                                <p class="cardHeading">Unique viewers reached</p>
+                                <p class="count">33.1K</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="extra-right common-styles">
+                    <div class="moreInfo">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

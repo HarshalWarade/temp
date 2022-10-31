@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <style>
+        .signUp {
+            margin-top: 30px;
+            width: 41%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #64649d;
+            padding: 10px 23px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: 0.4s ease;
+        }
+
+        .signUp:hover {
+            background: #515181;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mainForm">
+        <form action="/registerUser" method="post">
+            <div class="group-them">
+                <input type="text" placeholder="Enter your name here" name="name" autocomplete="off">
+
+                <input type="text" placeholder="Enter username here (Must be unique)" name="username" autocomplete="off"
+                >
+            </div>
+
+            <input type="email" placeholder="Enter email here" name="email" autocomplete="off">
+            <div class="group-them">
+                <div class="sub-divs specialDesign">
+                    <select name="gender" id="selectOptions">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="transgender">Transgender</option>
+                    </select>
+                </div>
+                <input type="number" placeholder="Enter contact number here" name="phonenumber" autocomplete="off"
+                >
+            </div>
+
+            <div class="group-them">
+                <input type="password" placeholder="Set your password" name="password" autocomplete="off">
+
+                <input type="password" placeholder="Confirm Password" name="cpassword" autocomplete="off">
+            </div>
+
+            <div class="group-them special">
+                <div class="sub-divs">
+                    <label for="userdob" class="label-text">Select your birthdate: </label>
+                    <input type="date" name="dob" id="userdob">
+                </div>
+                <div class="sub-divs specialDesign">
+                    <label for="selectOptions" class="label-text">What describes you best: </label>
+                    <select name="occupation" id="selectOptions">
+                        <option value="Farmer">Nothing Selected</option>
+                        <option value="Farmer">Farmer</option>
+                        <option value="Programmer">Programmer</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Student">Student</option>
+                        <option value="Advocate">Advocate</option>
+                        <option value="Builder">Builder</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" id="account">Create Account</button>
+        </form>
+
+        <a href="/login" class="signUp">Already have an account</a>
+    </div>
+</body>
+
+</html>

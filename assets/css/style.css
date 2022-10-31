@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+*:root {
+    --baseColor: #f24;
+    --hovered: #e5203e;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#mainContainer {
+    background: url("https://lucasmartinsnunes.online/themes/wokoya/assets/img/hire-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+    gap: 2rem;
+}
+
+#mainContainer h1 {
+    height: 50vh;
+    text-align: center;
+    font-size: 40px;
+    /* width: 50%; */
+    color: #999;
+    /* float: right; */
+    /* text-align: unset; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.6rem;
+}
+
+#mainContainer h1 span.effects {
+    color: #64649d;
+}
+
+#mainContainer div.buttons {
+    width: 50%;
+    display: flex;
+    margin: 0 auto;
+    height: 10vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.add {
+    /* width: 50%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ececec;
+    height: 10vh;
+}
+
+#mainContainer div.buttons a {
+    text-decoration: none;
+    padding: 10px 30px;
+    background: #64649d;
+    transition: 0.4s ease;
+    color: white;
+    border-radius: 4px;
+}
+
+#mainContainer div.buttons a:nth-child(1):hover {
+    background: #515181;
+}
+
+#mainContainer div.buttons a:nth-child(2) {
+    border: 2px solid #64649d;
+    background: none;
+    color: #777;
+}
+
+#mainContainer div.buttons a:nth-child(2):hover {
+    background: #64649d;
+    color: white;
+}
+
+.userHeading{
+    border: 2px solid yellow;
+}

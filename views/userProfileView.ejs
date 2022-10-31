@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=usernameAdd%> || ProfileEdit
+    </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .goback {
+            height: 10vh;
+            display: flex;
+            background: #1F2125;
+            padding: 0 0 0 30px;
+            align-items: center;
+        }
+
+        body {
+            background: #16171B;
+        }
+
+        .goback a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 30px;
+            gap: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 5px;
+            background: #00B274;
+            color: white;
+            transition: 0.4s ease;
+        }
+
+        .goback a:hover {
+            background: #009f67;
+        }
+
+        .mainuserwindow {
+            height: calc(100vh - 10vh);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mainuserwindow .card {
+            /* border: 2px solid #00B274; */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+            background: #1F2125;
+            padding: 60px;
+            border-radius: 12px;
+            height: 75vh;
+            width: 750px;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainuserwindow .card .commonInfo {
+            display: flex;
+            /* gap: 1rem; */
+        }
+
+        .mainuserwindow .card .commonInfo p.holder {
+            /* border: 2px solid red; */
+            color: rgb(201, 201, 201);
+            width: 30%;
+        }
+
+        .mainuserwindow .card .commonInfo p:nth-child(2) {
+            color: #999;
+        }
+
+        .username {
+            color: #00B274;
+        }
+
+        .deleteAccount {
+            padding: 10px 30px;
+            background: #f00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="goback">
+        <a href="/goback">
+            <ion-icon name="arrow-back-outline"></ion-icon> Go BACK
+        </a>
+    </div>
+    <div class="mainuserwindow">
+        <div class="card">
+            <div class="commonInfo">
+                <p class="holder"><b>Name: </b></p>
+                <p><%=usernameOriginal%></p>
+            </div>
+            <div class="commonInfo">
+                <p class="holder"><b>Unique Username: </b></p>
+                <p class="username"><%=usernameAdd%></p>
+            </div>
+            <div class="commonInfo">
+                <p class="holder"><b>Contact Number: </b></p>
+                <p><%=userPhone%></p>
+            </div>
+            <div class="commonInfo">
+                <p class="holder"><b>Email: </b></p>
+                <p><%=userEmail%></p>
+            </div>
+            <div class="commonInfo">
+                <p class="holder"><b>Gender: </b></p>
+                <p><%=userGender%></p>
+            </div>
+            <div class="commonInfo">
+                <p class="holder"><b>Date of Birth: </b></p>
+                <p><%=userDOB%></p>
+            </div>
+            <div class="commonInfo">
+                <p class="holder"><b>Occupation: </b></p>
+                <p><%=userOccupation%></p>
+            </div>
+            <div class="commonInfo">
+                <a href="/deleteThisUser" class="deleteAccount">Delete Account</a>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
