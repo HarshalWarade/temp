@@ -48,10 +48,6 @@ app.post('/registerUser', async function(req, res){
         });
     }
     try{
-        // let random = [1,2,3,4,5,6,7,8,9,0];
-        // let x = random[Math.floor(Math.random() * random.length)];
-        // let y = random[Math.floor(Math.random() * random.length)];
-        // let z = random[Math.floor(Math.random() * random.length)];
         let random = Math.floor(Math.random() * 100);
         const userExist = await User.findOne({email: email});
         const usernameExists = await User.findOne({username: username});
@@ -123,6 +119,16 @@ app.post('/loginUser', async (req, res)=>{
 });
 app.get('/teleport', authenticate, async function(req, res){
     try {
+        const userState = User.find({isLogin: 'true'});
+        var passusername;
+        // if(userState == 'true'){
+        //     passusername = userState;
+        //     console.log(`${passusername} is active`);
+        // }
+        // else{
+        //     console.log(`${req.rootUser.username} is inactive`);
+        // }
+        console.log(userState.username);
         const usersl = await User.find({isLogin: 'true'});
         const count = await User.count({isLogin: 'true'})
         console.log(count);
@@ -132,7 +138,7 @@ app.get('/teleport', authenticate, async function(req, res){
         res.status(200).render('basic', {
         timess: `${x}/${y}/${z}`,
         newBlog: addBlog,
-
+        activeUserfound: passusername    
     });
     } catch (error) {
         console.log(error);
@@ -258,7 +264,7 @@ app.get('/deleteThisUser', authenticate, async (req, res)=>{
 
 app.listen(port, (err)=>{
     if(err==true){console.log(`Error occured: ${err}`)}else{
-        console.log(`Application is running on the port ${port}`);
+        console.log(`Application is running on the http://localhost:${port}`);
     };
 });
 

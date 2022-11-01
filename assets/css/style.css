@@ -8,8 +8,8 @@
 }
 
 *:root {
-    --baseColor: #f24;
-    --hovered: #e5203e;
+    --baseColor: #64649d;
+    --hovered: #515181;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -27,10 +27,6 @@ input[type="number"] {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; */
     gap: 2rem;
 }
 
